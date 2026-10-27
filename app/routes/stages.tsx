@@ -1,22 +1,14 @@
+import { STAGES, type Stage } from "~/stages";
 import type { Route } from "./+types/stages";
-import type { Stage } from "~/components/SelectButton";
 import { SelectButton } from "~/components/SelectButton";
 
-export type { Stage };
-
+export const STAGE_COUNT = STAGES.length;
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "ステージ選択" },
     { name: "description", content: "ステージ選択画面" },
   ];
 }
-
-// 1〜12のステージデータ(ダミー）
-const stages: Stage[] = Array.from({ length: 12 }, (_, i) => ({
-  id: i + 1,
-  name: i + 1,
-  to: `/play/${i + 1}`,
-}));
 
 export default function StageSelect() {
   return (
@@ -26,8 +18,8 @@ export default function StageSelect() {
           ステージ選択
         </h1>
         <div className="grid grid-cols-6 gap-3 sm:gap-4 md:gap-5 w-full">
-          {stages.map((stage) => (
-            <SelectButton key={stage.id} stage={stage} />
+          {[...Array(STAGE_COUNT).keys()].map((stageNumber) => (
+            <SelectButton key={stageNumber+1} stageNumber={stageNumber+1} />
           ))}
         </div>
       </div>

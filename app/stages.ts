@@ -5,8 +5,10 @@ type Card =
   | { type: "divide"; value: number }
   | { type: "mod"; value: number }
   | { type: "backwards" };
-
-export const STAGES: { startNum: number; cards: Card[] }[] = [
+export type Stage ={
+  startNum:number; cards:Card[]
+}
+export const STAGES: Stage[] = [
   {
     startNum: 6,
     cards: [
